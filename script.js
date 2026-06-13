@@ -50,7 +50,7 @@ createHearts();
 
 
 // ==========================================
-// 3. FITUR PERPINDAHAN HALAMAN PESAN
+// 3. FITUR PERPINDAHAN HALAMAN PESAN HALUS
 // ==========================================
 const surpriseBtn = document.getElementById('surpriseBtn');
 const messageContainer = document.getElementById('messageContainer');
@@ -69,33 +69,56 @@ surpriseBtn.addEventListener('click', () => {
 });
 
 function updatePage(index) {
-    pages.forEach(page => {
-        page.classList.remove('active');
-    });
+    const activePage = document.querySelector('.page.active');
     
-    setTimeout(() => {
-        pages[index].classList.add('active');
-    }, 50);
+    // 1. Efek keluar halus pada halaman aktif lama
+    if (activePage) {
+        activePage.classList.add('exit');
+        activePage.classList.remove('active');
+        
+        setTimeout(() => {
+            activePage.classList.remove('exit');
+            activePage.style.display = 'none';
+            
+            // 2. Tampilkan halaman baru setelah halaman lama selesai hilang
+            targetPageSetup(index);
+        }, 400); // Sinkron dengan durasi transisi CSS
+    } else {
+        targetPageSetup(index);
+    }
 
+    // Perbarui status titik indikator
     dots.forEach((dot, i) => {
-        if (i === index) {
-            dot.classList.add('active');
-        } else {
-            dot.classList.remove('active');
-        }
+        dot.classList.toggle('active', i === index);
     });
 
-    prevBtn.disabled = (index === 0);
-
-    // Menyembunyikan tombol navigasi bawaan di halaman terakhir agar fokus ke pilihan Ya/Tidak
+    // Sembunyikan navigasi jika berada di halaman pertanyaan romantis terakhir
     if (index === pages.length - 1) {
-        navButtons.style.display = 'none';
-        pageIndicator.style.display = 'none';
+        navButtons.style.opacity = '0';
+        pageIndicator.style.opacity = '0';
+        setTimeout(() => {
+            navButtons.style.display = 'none';
+            pageIndicator.style.display = 'none';
+        }, 400);
     } else {
         navButtons.style.display = 'flex';
         pageIndicator.style.display = 'flex';
+        setTimeout(() => {
+            navButtons.style.opacity = '1';
+            pageIndicator.style.opacity = '1';
+        }, 50);
+        prevBtn.disabled = (index === 0);
         nextBtn.innerText = "Lanjut ❤️";
     }
+}
+
+function targetPageSetup(index) {
+    const targetPage = pages[index];
+    targetPage.style.display = 'block';
+    
+    setTimeout(() => {
+        targetPage.classList.add('active');
+    }, 20); // Jeda mikro agar browser merender perpindahan kelas dengan mulus
 }
 
 nextBtn.addEventListener('click', () => {
@@ -122,29 +145,22 @@ const yesBtn = document.getElementById('yesBtn');
 function moveButton() {
     const container = document.getElementById('messageContainer');
     
-    // Menghitung batas area aman agar tombol tidak melompati batas luar box kotak pesan
     const maxX = container.clientWidth - noBtn.clientWidth - 30;
     const maxY = container.clientHeight - noBtn.clientHeight - 40;
 
-    // Koordinat acak
     const randomX = Math.floor(Math.random() * maxX) + 15;
     const randomY = Math.floor(Math.random() * maxY) + 15;
 
-    // Pindahkan tombol menggunakan gaya CSS absolute koordinat
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
 }
 
-// Berpindah tempat ketika mouse mendekat (PC/Laptop)
 noBtn.addEventListener('mouseover', moveButton);
-
-// Berpindah tempat ketika disentuh jari (HP/Smartphone)
 noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault(); 
+    e.preventDefault(); // Mencegah klik tidak sengaja di layar HP Android/iOS
     moveButton();
 });
 
-// Aksi ketika tombol "Iya dong!" berhasil diklik
 yesBtn.addEventListener('click', () => {
     alert("Yesss! Aku tahu kamu pasti pilih IYA! I love you so much, Sayang! 💖✨");
 });
