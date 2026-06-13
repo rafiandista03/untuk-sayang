@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Journey ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="heart-container" id="heartContainer"></div>
+
+    <main class="card">
+        <div class="profile-section">
+            <div class="avatar-group">
+                <div class="avatar boy"></div>
+                <div class="heart-icon">💖</div>
+                <div class="avatar girl"></div>
+            </div>
+            <h1 class="title">Untuk Sayangku ✨</h1>
+            <p class="subtitle">Setiap hari bersamamu adalah bagian terindah dari hidupku.</p>
+        </div>
+
+        <div class="timer-section">
+            <h3>Waktu Bahagia Kita</h3>
+            <div class="countdown" id="loveCounter">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <label>Hari</label>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <label>Jam</label>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <label>Menit</label>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <label>Detik</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="interactive-section">
+            <button class="btn-primary" id="surpriseBtn">Klik untuk Kejutan ✨</button>
+            
+            <div class="message-container hidden" id="messageContainer">
+                
+                <div class="page active" data-page="1">
+                    <p class="love-quote">"Kamu adalah alasan di balik senyuman pertamaku setiap pagi. ✨"</p>
+                </div>
+                
+                <div class="page" data-page="2">
+                    <p class="love-quote">"Terima kasih sudah sabar dan selalu mendukungku dalam segala situasi. ❤️"</p>
+                </div>
+                
+                <div class="page" data-page="3">
+                    <p class="love-quote">"Bersamamu, aku merasa menjadi versi terbaik dari diriku sendiri. 💙"</p>
+                </div>
+                
+                <div class="page" data-page="4">
+                    <p class="love-quote">"Gak ada tempat ternyaman di dunia ini selain saat berada di dekatmu. 🥰"</p>
+                </div>
+
+                <div class="page" data-page="5">
+                    <p class="love-quote" style="font-size: 17px; font-weight: 600; font-style: normal;">"Menurut kamu, orang yang paling menggemaskan di dunia itu aku kan? 🥺"</p>
+                    
+                    <div class="choice-buttons">
+                        <button class="btn-choice yes" id="yesBtn">Iya dong! 🥰</button>
+                        <button class="btn-choice no" id="noBtn">Enggak 😜</button>
+                    </div>
+                </div>
+
+                <div class="nav-buttons" id="navButtons">
+                    <button class="btn-secondary" id="prevBtn" disabled>Kembali</button>
+                    <button class="btn-secondary" id="nextBtn">Lanjut ❤️</button>
+                </div>
+                
+                <div class="page-indicator" id="pageIndicator">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
