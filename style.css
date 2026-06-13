@@ -17,7 +17,6 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    /* Kombinasi gradasi modern biru pastel, pink, dan ungu muda */
     background: linear-gradient(135deg, #b5e2fa 0%, #ffc6ff 50%, #ffd6ff 100%);
     min-height: 100vh;
     display: flex;
@@ -100,15 +99,13 @@ body {
     background-position: center;
 }
 
-/* Kamu bisa meletakkan file fotoku.jpg dan fotodia.jpg di folder yang sama */
+/* Menggunakan file foto lokal sesuai nama filenya */
 .avatar.boy {
     background-image: url('rafi.jpeg');
-    background-color: var(--blue-light);
 }
 
 .avatar.girl {
     background-image: url('aulia-main.jpeg');
-    background-color: var(--pink-light);
 }
 
 .heart-icon {
@@ -211,19 +208,30 @@ body {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Menyembunyikan halaman tidak aktif */
+/* ==========================================
+   ANIMASI HALAMAN HALUS (FADE & SLIDE)
+   ========================================== */
+
+/* Kondisi awal halaman saat disembunyikan (Geser kanan & Transparan) */
 .page {
     display: none;
     opacity: 0;
-    transform: translateX(20px);
-    transition: all 0.4s ease;
+    transform: translateX(30px) scale(0.98);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Menampilkan halaman aktif */
+/* Kondisi saat halaman aktif masuk sempurna */
 .page.active {
     display: block;
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
+}
+
+/* Kondisi saat halaman lama keluar bergeser ke kiri */
+.page.exit {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.98);
 }
 
 .love-quote {
@@ -276,6 +284,7 @@ body {
     justify-content: space-between;
     gap: 10px;
     margin-bottom: 15px;
+    transition: opacity 0.3s ease;
 }
 
 .btn-secondary {
@@ -307,6 +316,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 8px;
+    transition: opacity 0.3s ease;
 }
 
 .dot {
